@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aprendé mantenimiento y reparación de computadoras desde cero en PC MASTER.">
+<title>PC MASTER | Academia de Informática</title>
+
+<style>
+:root {
+  --bg:#070b13;
+  --panel:#101a2b;
+  --panel2:#15233a;
+  --blue:#168cff;
+  --white:#f4f7fb;
+  --gray:#aab8cc;
+  --green:#50dfa0;
+  --border:#293b55;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:Arial,sans-serif;line-height:1.7;
+}
+header {
+  background:#0b1220;border-bottom:1px solid var(--border);
+  padding:16px 6%;display:flex;justify-content:space-between;
+  align-items:center;gap:15px;flex-wrap:wrap;
+}
+.logo {font-size:25px;font-weight:900;color:var(--blue)}
+nav {display:flex;gap:18px;flex-wrap:wrap}
+nav a {color:white;text-decoration:none}
+nav a:hover {color:var(--blue)}
+button {
+  background:var(--blue);color:white;border:0;border-radius:9px;
+  padding:12px 18px;font-weight:bold;cursor:pointer;margin:5px 5px 5px 0;
+}
+button:hover {filter:brightness(1.15)}
+button:disabled {opacity:.4;cursor:not-allowed}
+.secondary {background:#263850}
+.container {width:min(1100px,90%);margin:auto}
+.hero {
+  padding:85px 0;background:
+  radial-gradient(ellipse at 80% 20%,#12365c 0,transparent 45%);
+}
+.hero h1 {font-size:clamp(38px,6vw,65px);line-height:1.12;margin:12px 0}
+.hero p {max-width:680px}
+p {color:var(--gray)}
+.eyebrow {color:var(--blue);font-weight:bold;letter-spacing:2px}
+section {padding:55px 0}
+h2 {font-size:clamp(26px,4vw,36px);line-height:1.25}
+h3 {line-height:1.3}
+.cards {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));
+  gap:18px;margin-top:25px;
+}
+.card {
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:15px;padding:22px;
+}
+.card p {margin-bottom:15px}
+.icon {font-size:35px}
+.progress-bg {
+  height:9px;background:#263750;border-radius:20px;overflow:hidden;
+}
+.progress-fill {height:100%;width:0;background:var(--green);transition:.3s}
+.hidden {display:none!important}
+.screen {min-height:75vh;padding:35px 0 70px}
+.breadcrumb {color:var(--gray);margin-bottom:20px}
+.content {
+  background:var(--panel);border:1px solid var(--border);
+  padding:clamp(18px,4vw,38px);border-radius:16px;
+}
+.content h2 {color:var(--blue)}
+.content h3 {margin-top:28px}
+.content li {margin:10px 0;color:#dce6f5}
+.callout {
+  border-left:4px solid var(--blue);background:#0c2038;
+  padding:15px 18px;margin:20px 0;border-radius:7px;
+}
+.warning {border-color:#ffbd59;background:#302416}
+.example {
+  background:var(--panel2);padding:17px;border-radius:10px;margin:15px 0;
+}
+.virtual-table {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;margin:20px 0;
+}
+.part {
+  min-height:115px;background:#0a1321;border:1px solid var(--border);
+  color:white;border-radius:12px;padding:14px;cursor:pointer;
+}
+.part span {display:block;font-size:30px}
+.part:hover,.part.selected {border-color:var(--blue);background:#102c4c}
+#partInfo {background:#0a1321;border-radius:10px;padding:18px;min-height:80px}
+.quiz {
+  border-top:1px solid var(--border);margin-top:30px;padding-top:20px;
+}
+.answer {
+  display:block;background:#0a1321;padding:12px;border-radius:8px;
+  margin:9px 0;cursor:pointer;border:1px solid var(--border);
+}
+.answer:has(input:checked) {border-color:var(--blue)}
+.answer input {margin-right:10px}
+#feedback {font-weight:bold;margin-top:15px}
+.lesson-nav {
+  display:flex;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin-top:25px;
+}
+footer {
+  text-align:center;background:#0b1220;border-top:1px solid var(--border);
+  padding:35px 15px;
+}
+footer strong {color:var(--blue)}
+.small {font-size:14px}
+@media(max-width:600px) {
+  header {padding:15px 5%}
+  nav {gap:12px}
+  .hero {padding:60px 0}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo">PC MASTER</div>
+  <nav>
+    <a href="#" onclick="home();return false">Inicio</a>
+    <a href="#cursos" onclick="home()">Cursos</a>
+    <a href="#creador" onclick="home()">Creador</a>
+  </nav>
+</header>
+
+<main id="homeScreen">
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">ACADEMIA DE INFORMÁTICA</div>
+      <h1>Aprendé a reparar computadoras desde cero.</h1>
+      <p>Entendé cómo funciona una PC, conocé sus componentes, aprendé mantenimiento, Windows y diagnóstico de problemas con clases explicadas para principiantes.</p>
+      <button onclick="goCourses()">Comenzar curso →</button>
+      <button class="secondary" onclick="goCourses()">Conocer el curso</button>
+      <div style="margin-top:25px;color:var(--gray)">
+        ✓ Para principiantes &nbsp; ✓ Clases prácticas &nbsp; ✓ Evaluaciones
+      </div>
+    </div>
+  </section>
+
+  <section id="cursos">
+    <div class="container">
+      <div class="eyebrow">TU CAMINO DE APRENDIZAJE</div>
+      <h2>Curso de mantenimiento y reparación de PC</h2>
+      <p>Empezá por la primera clase y avanzá a tu ritmo.</p>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <strong>Tu progreso</strong>
+          <span id="progressText">0 de 8 módulos completados</span>
+        </div>
+        <div class="progress-bg" style="margin-top:12px">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="cards" id="moduleCards"></div>
+    </div>
+  </section>
+
+  <section id="creador">
+    <div class="container">
+      <div class="card">
+        <div class="eyebrow">SOBRE EL PROYECTO</div>
+        <h2>PC MASTER</h2>
+        <p>Una academia creada para que cualquier persona pueda empezar a aprender informática desde cero, paso a paso y con explicaciones sencillas.</p>
+        <p><strong style="color:white">Creado por Máximo Montilla.</strong></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- PANTALLA DEL MÓDULO -->
+<main id="moduleScreen" class="screen hidden">
+  <div class="container">
+    <div class="breadcrumb">PC MASTER / Curso / <span id="moduleCrumb"></span></div>
+    <button class="secondary" onclick="goCourses()">← Volver a los cursos</button>
+    <div class="content" style="margin-top:20px">
+      <div class="eyebrow" id="moduleNumber"></div>
+      <h2 id="moduleTitle"></h2>
+      <p id="moduleDescription"></p>
+      <h3>¿Qué vas a aprender?</h3>
+      <ul id="moduleGoals"></ul>
+      <div class="callout">
+        <strong>Tu objetivo:</strong>
+        <p>Comprender el tema antes de pasar al siguiente. No hace falta que sepas informática de antemano.</p>
+      </div>
+      <button onclick="startLesson()">Empezar clase →</button>
+    </div>
+  </div>
+</main>
+
+<!-- PANTALLA DE LA CLASE: SEPARADA DEL INICIO -->
+<main id="lessonScreen" class="screen hidden">
+  <div class="container">
+    <div class="breadcrumb">PC MASTER / Clase / <span id="lessonCrumb"></span></div>
+    <button class="secondary" onclick="backToModule()">← Volver al módulo</button>
+    <article class="content" style="margin-top:20px">
+      <div class="eyebrow" id="lessonNumber"></div>
+      <h2 id="lessonTitle"></h2>
+      <div id="lessonBody"></div>
+
+      <div id="virtualActivity" class="hidden">
+        <h3>🧰 Aprendé haciendo: mesa virtual de PC</h3>
+        <p>Tocá cada componente para conocer su función. Es una actividad virtual: no necesitás tener piezas reales.</p>
+        <div class="virtual-table">
+          <button class="part" onclick="showPart('cpu',this)"><span>🧠</span>Procesador</button>
+          <button class="part" onclick="showPart('ram',this)"><span>💾</span>Memoria RAM</button>
+          <button class="part" onclick="showPart('ssd',this)"><span>📦</span>SSD / disco</button>
+          <button class="part" onclick="showPart('mother',this)"><span>🔌</span>Placa madre</button>
+          <button class="part" onclick="showPart('gpu',this)"><span>🎮</span>Tarjeta gráfica</button>
+          <button class="part" onclick="showPart('power',this)"><span>⚡</span>Fuente</button>
+          <button class="part" onclick="showPart('cooling',this)"><span>🌀</span>Refrigeración</button>
+          <button class="part" onclick="showPart('case',this)"><span>🖥️</span>Gabinete</button>
+        </div>
+        <div id="partInfo">Elegí un componente para ver su explicación.</div>
+      </div>
+
+      <div class="quiz">
+        <div class="eyebrow">REVISÁ LO QUE YA COMPRENDISTE</div>
+        <h3 id="quizQuestion"></h3>
+        <div id="quizAnswers"></div>
+        <button onclick="checkAnswer()">Comprobar respuesta</button>
+        <div id="feedback"></div>
+      </div>
+
+      <div class="lesson-nav">
+        <button class="secondary" onclick="backToModule()">Volver al módulo</button>
+        <button id="finishButton" onclick="finishLesson()">Terminé esta clase ✓</button>
+        <button id="nextButton" onclick="nextModule()">Siguiente módulo →</button>
+      </div>
+      <p class="small">Tu progreso se guarda en este navegador en este dispositivo.</p>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="logo">PC MASTER</div>
+  <p>Aprendé hoy. Preparáte para el futuro.</p>
+  <p>Esta página fue creada por <strong>Máximo Montilla</strong>.</p>
+  <p class="small">© 2026 PC MASTER · Academia de Informática</p>
+</footer>
+
+<script>
+const modules = [
+{
+ title:"Introducción a la PC",
+ icon:"🖥️",
+ desc:"Conocé qué es una computadora, cómo trabaja y cuáles son sus partes principales.",
+ goals:["Entender qué es una computadora.","Diferenciar hardware y software.","Conocer los componentes principales.","Identificar para qué sirve cada pieza."],
+ body:`
+ <h3>1. ¿Qué es una computadora?</h3>
+ <p>Una computadora es un equipo electrónico que recibe datos, los procesa y produce resultados. Podés usarla para estudiar, jugar, trabajar, navegar por Internet y crear contenido.</p>
+ <div class="example"><strong>Ejemplo:</strong> cuando abrís un juego, la computadora utiliza el procesador, la memoria RAM, el almacenamiento y, en muchos juegos, la tarjeta gráfica para ejecutarlo.</div>
+ <h3>2. Hardware y software</h3>
+ <p><strong>Hardware</strong> son las partes físicas que podés tocar: el monitor, el teclado, la memoria RAM y el disco SSD.</p>
+ <p><strong>Software</strong> son los programas e instrucciones: Windows, un navegador, un editor de imágenes o un videojuego.</p>
+ <h3>3. Los componentes principales</h3>
+ <p>El procesador ejecuta instrucciones; la RAM mantiene datos temporalmente mientras usás programas; el SSD guarda archivos; y la placa madre conecta los componentes.</p>
+ <p>La fuente proporciona energía, la refrigeración ayuda a controlar la temperatura y la tarjeta gráfica procesa imágenes. Algunas computadoras tienen gráficos integrados en el procesador.</p>
+ <h3>4. ¿Cómo trabajan juntos?</h3>
+ <p>Cuando abrís un programa, el sistema carga información desde el almacenamiento hacia la memoria RAM. El procesador ejecuta instrucciones y la parte gráfica ayuda a mostrar el resultado en el monitor.</p>
+ <div class="callout"><strong>Idea clave:</strong> una computadora funciona gracias a varios componentes que trabajan juntos. Una sola pieza no hace todo el trabajo.</div>
+ <h3>5. Practicá con la mesa virtual</h3>
+ <p>Abajo tenés una mesa virtual. Tocá cada componente y leé para qué sirve. Después respondé la pregunta para revisar lo que aprendiste.</p>
+ `,
+ activity:true,
+ q:"¿Qué componente conserva tus archivos incluso cuando apagás la computadora?",
+ answers:["La memoria RAM","El SSD o disco duro","El ventilador"],
+ correct:1
+},
+{
+ title:"Componentes y hardware",
+ icon:"🧩",
+ desc:"Aprendé las funciones de las piezas y cómo se relacionan entre sí.",
+ goals:["Reconocer CPU y placa madre.","Comprender RAM y almacenamiento.","Conocer tarjeta gráfica y fuente.","Entender la compatibilidad básica."],
+ body:`
+ <h3>¿Qué hace cada componente?</h3>
+ <p><strong>Procesador (CPU):</strong> ejecuta instrucciones y realiza cálculos. Su rendimiento depende del modelo y de la tarea.</p>
+ <p><strong>Placa madre:</strong> conecta los componentes y permite que se comuniquen. El procesador y la memoria deben ser compatibles con ella.</p>
+ <p><strong>Memoria RAM:</strong> permite trabajar con los datos de programas que están en uso. Es temporal y su contenido se pierde al apagar el equipo.</p>
+ <p><strong>SSD o HDD:</strong> guardan Windows, juegos, programas y documentos. Un SSD suele ofrecer tiempos de carga más rápidos que un disco duro mecánico.</p>
+ <p><strong>Tarjeta gráfica (GPU):</strong> procesa imágenes y gráficos. Puede estar integrada o ser una tarjeta independiente.</p>
+ <p><strong>Fuente de alimentación:</strong> suministra energía a los componentes. Debe ser adecuada y de buena calidad.</p>
+ <h3>¿Qué significa compatibilidad?</h3>
+ <p>Significa que las piezas pueden funcionar juntas. Antes de comprar componentes hay que revisar el socket del procesador, el tipo de RAM, el tamaño de la placa y los requisitos de energía.</p>
+ <div class="callout"><strong>Consejo:</strong> nunca compres una pieza solo porque entra físicamente en el gabinete. Primero verificá las especificaciones.</div>
+ `,
+ q:"¿Cuál de estos componentes almacena datos temporalmente mientras usás programas?",
+ answers:["La RAM","La fuente","El gabinete"],
+ correct:0
+},
+{
+ title:"Armado y conexiones",
+ icon:"🔧",
+ desc:"Aprendé cómo se organizan las piezas y qué revisar antes de armar una PC.",
+ goals:["Identificar las conexiones principales.","Entender el orden general de montaje.","Reconocer la importancia de la compatibilidad.","Aprender normas básicas de seguridad."],
+ body:`
+ <h3>Antes de empezar</h3>
+ <p>Armar una computadora requiere paciencia, herramientas adecuadas y componentes compatibles. Leé los manuales de la placa madre, del gabinete y de cada pieza.</p>
+ <h3>Partes que se conectan</h3>
+ <ul>
+ <li>El procesador se instala en un socket compatible.</li>
+ <li>La RAM se coloca en las ranuras indicadas por el manual.</li>
+ <li>El almacenamiento se conecta según sea SSD M.2, SATA u otro formato.</li>
+ <li>La placa madre y los dispositivos reciben energía de la fuente mediante conectores específicos.</li>
+ <li>El monitor se conecta a una salida de video compatible.</li>
+ </ul>
+ <h3>Seguridad básica</h3>
+ <p>Apagá y desenchufá el equipo antes de trabajar en su interior. Evitá trabajar sobre alfombras, manipulá las piezas por sus bordes y seguí las indicaciones de protección contra electricidad estática.</p>
+ <div class="callout warning"><strong>Importante:</strong> no abras la fuente de alimentación. Sus componentes internos pueden ser peligrosos incluso desconectados. Si sos principiante, practicá primero con supervisión de una persona capacitada.</div>
+ `,
+ q:"¿Qué debés comprobar antes de instalar un procesador?",
+ answers:["Solo el color del gabinete","La compatibilidad con el socket y la placa madre","La marca del teclado"],
+ correct:1
+},
+{
+ title:"Limpieza y mantenimiento",
+ icon:"🧹",
+ desc:"Aprendé hábitos seguros para cuidar la PC y prevenir problemas comunes.",
+ goals:["Entender por qué se acumula polvo.","Conocer hábitos de mantenimiento.","Identificar señales de sobrecalentamiento.","Aplicar medidas de seguridad."],
+ body:`
+ <h3>¿Para qué sirve el mantenimiento?</h3>
+ <p>El polvo puede bloquear entradas de aire y dificultar la refrigeración. Un buen mantenimiento también ayuda a detectar cables dañados, ruidos inusuales o ventiladores que no funcionan bien.</p>
+ <h3>Hábitos recomendados</h3>
+ <ul>
+ <li>Mantené despejadas las entradas y salidas de aire.</li>
+ <li>Usá la computadora en una superficie firme y ventilada.</li>
+ <li>Limpiá el exterior con un paño apropiado y sin rociar líquidos sobre el equipo.</li>
+ <li>Revisá las actualizaciones y mantené copias de seguridad.</li>
+ <li>Prestá atención a temperaturas altas, apagados inesperados o ruidos extraños.</li>
+ </ul>
+ <h3>¿Qué hacer antes de una limpieza interna?</h3>
+ <p>Apagá la PC, desenchufala y consultá el manual del fabricante. No uses líquidos directamente sobre los componentes. Si no sabés cómo hacerlo con seguridad, pedí ayuda a una persona capacitada.</p>
+ <div class="callout warning"><strong>Seguridad:</strong> nunca abras una fuente de alimentación ni manipules componentes con el equipo conectado a la corriente.</div>
+ `,
+ q:"¿Cuál es una buena práctica para evitar problemas de temperatura?",
+ answers:["Bloquear las salidas de aire","Mantener despejadas las entradas de ventilación","Cubrir el gabinete con una manta"],
+ correct:1
+},
+{
+ title:"Windows y programas",
+ icon:"💻",
+ desc:"Conocé el sistema operativo, las aplicaciones y las herramientas básicas.",
+ goals:["Entender qué es Windows.","Diferenciar sistema operativo y aplicaciones.","Conocer actualizaciones y copias de seguridad.","Aprender hábitos básicos de software."],
+ body:`
+ <h3>¿Qué es Windows?</h3>
+ <p>Windows es un sistema operativo. Administra recursos del equipo y ofrece herramientas para abrir programas, organizar archivos y utilizar dispositivos.</p>
+ <h3>Programas y controladores</h3>
+ <p>Las aplicaciones sirven para realizar tareas concretas. Los controladores o drivers permiten que el sistema operativo se comunique correctamente con dispositivos como la tarjeta gráfica, el audio o la impresora.</p>
+ <h3>Buenas prácticas</h3>
+ <ul>
+ <li>Instalá programas desde fuentes oficiales o confiables.</li>
+ <li>Mantené Windows y las aplicaciones actualizadas.</li>
+ <li>Desinstalá programas que ya no necesites.</li>
+ <li>Hacé copias de seguridad de los archivos importantes.</li>
+ <li>Antes de reinstalar Windows, comprobá qué datos podrían perderse.</li>
+ </ul>
+ <div class="callout"><strong>Recordá:</strong> reinstalar Windows no es la primera solución para cualquier problema. Primero conviene identificar la causa.</div>
+ `,
+ q:"¿Qué conviene hacer antes de reinstalar Windows?",
+ answers:["Guardar una copia de los archivos importantes","Borrar todo sin revisar","Desconectar la memoria RAM"],
+ correct:0
+},
+{
+ title:"Diagnóstico de problemas",
+ icon:"🔍",
+ desc:"Aprendé a observar síntomas y comprobar posibles causas sin cambiar piezas al azar.",
+ goals:["Distinguir síntomas de causas.","Realizar comprobaciones iniciales.","Interpretar mensajes de error.","Registrar las pruebas realizadas."],
+ body:`
+ <h3>¿Qué es diagnosticar?</h3>
+ <p>Diagnosticar es investigar por qué ocurre un problema antes de intentar repararlo. Un síntoma puede tener varias causas posibles.</p>
+ <h3>Ejemplos comunes</h3>
+ <p><strong>La PC no muestra imagen:</strong> comprobá que el monitor esté encendido, que tenga alimentación y que el cable de video esté bien conectado.</p>
+ <p><strong>La computadora está lenta:</strong> revisá el espacio disponible, los programas abiertos y el uso de recursos del sistema.</p>
+ <p><strong>El equipo se calienta:</strong> comprobá que las entradas de aire estén libres y observá si los ventiladores funcionan correctamente.</p>
+ <p><strong>Aparece un error:</strong> anotá el mensaje exacto y cuándo ocurre. Esa información ayuda a investigar la causa.</p>
+ <h3>Un método ordenado</h3>
+ <ol>
+ <li>Describí el problema.</li>
+ <li>Revisá las causas más sencillas y seguras.</li>
+ <li>Probá una cosa por vez.</li>
+ <li>Anotá los resultados.</li>
+ <li>Si hace falta abrir el equipo o trabajar con electricidad, buscá ayuda capacitada.</li>
+ </ol>
+ `,
+ q:"¿Cuál es la mejor forma de comenzar un diagnóstico?",
+ answers:["Cambiar todas las piezas","Observar el síntoma y probar una cosa por vez","Ignorar los mensajes de error"],
+ correct:1
+},
+{
+ title:"Almacenamiento y copias de seguridad",
+ icon:"📂",
+ desc:"Aprendé a organizar archivos y proteger tus documentos importantes.",
+ goals:["Diferenciar RAM y almacenamiento.","Entender SSD y HDD.","Organizar archivos.","Comprender las copias de seguridad."],
+ body:`
+ <h3>RAM y almacenamiento no son lo mismo</h3>
+ <p>La RAM mantiene temporalmente los datos que los programas necesitan mientras están en uso. El almacenamiento conserva los archivos cuando apagás el equipo.</p>
+ <h3>SSD y HDD</h3>
+ <p>Un SSD usa memoria electrónica y normalmente permite iniciar Windows y abrir programas con rapidez. Un HDD utiliza discos mecánicos y puede ser útil para guardar grandes cantidades de información.</p>
+ <h3>Cómo proteger tus archivos</h3>
+ <ul>
+ <li>Organizá tus documentos en carpetas con nombres claros.</li>
+ <li>Guardá copias de los archivos importantes en otro dispositivo o servicio confiable.</li>
+ <li>Comprobá que las copias se puedan abrir.</li>
+ <li>No conectes unidades desconocidas si sospechás que contienen archivos maliciosos.</li>
+ </ul>
+ <div class="callout"><strong>Idea clave:</strong> tener tus archivos en una sola unidad no equivale a tener una copia de seguridad.</div>
+ `,
+ q:"¿Cuál es el propósito principal de una copia de seguridad?",
+ answers:["Aumentar la temperatura","Tener otra copia de archivos importantes","Reemplazar el procesador"],
+ correct:1
+},
+{
+ title:"Seguridad informática",
+ icon:"🛡️",
+ desc:"Protegé tu computadora, tus cuentas y tus datos personales.",
+ goals:["Reconocer enlaces sospechosos.","Usar contraseñas seguras.","Comprender las actualizaciones.","Evitar descargas riesgosas."],
+ body:`
+ <h3>Protegé tu equipo y tus cuentas</h3>
+ <p>La seguridad informática consiste en reducir los riesgos que pueden afectar a los dispositivos, las cuentas y la información personal.</p>
+ <h3>Hábitos importantes</h3>
+ <ul>
+ <li>Usá contraseñas largas y diferentes para cada cuenta.</li>
+ <li>Activá la autenticación en dos pasos cuando esté disponible.</li>
+ <li>No abras adjuntos ni enlaces inesperados.</li>
+ <li>Descargá aplicaciones desde fuentes oficiales o confiables.</li>
+ <li>Mantené el sistema y las herramientas de seguridad actualizados.</li>
+ <li>No compartas contraseñas ni códigos de verificación.</li>
+ </ul>
+ <h3>¿Qué pasa si algo parece sospechoso?</h3>
+ <p>No ingreses tus datos. Verificá el remitente y consultá una fuente confiable. Si es un equipo compartido, evitá guardar tus contraseñas en él.</p>
+ `,
+ q:"¿Qué deberías hacer si recibís un enlace sospechoso?",
+ answers:["Abrirlo inmediatamente","Ingresar tus contraseñas","No abrirlo y verificar si es confiable"],
+ correct:2
+}
+];
+
+const partDescriptions = {
+ cpu:"El procesador (CPU) ejecuta instrucciones y realiza cálculos. Es una parte central del funcionamiento del equipo.",
+ ram:"La memoria RAM mantiene temporalmente los datos que necesitan los programas abiertos. Su contenido se pierde al apagar la computadora.",
+ ssd:"El SSD o disco duro guarda Windows, los programas y los documentos. Los datos permanecen guardados aunque apagues el equipo.",
+ mother:"La placa madre conecta los componentes y permite que se comuniquen. La compatibilidad es fundamental.",
+ gpu:"La tarjeta gráfica procesa imágenes y gráficos. Puede estar integrada en el procesador o ser una tarjeta independiente.",
+ power:"La fuente de alimentación suministra energía a los componentes. Nunca debe abrirse para intentar repararla sin capacitación profesional.",
+ cooling:"La refrigeración, incluidos ventiladores y disipadores, ayuda a mantener temperaturas de funcionamiento adecuadas.",
+ case:"El gabinete aloja y protege los componentes. También influye en el flujo de aire y en el espacio disponible."
+};
+
+let current = 0;
+let answeredCorrectly = false;
+let completed = JSON.parse(localStorage.getItem("pcmaster_completed") || "[]");
+
+function saveProgress() {
+ localStorage.setItem("pcmaster_completed",JSON.stringify(completed));
+ updateProgress();
+}
+
+function updateProgress() {
+ document.getElementById("progressText").textContent =
+ completed.length + " de " + modules.length + " módulos completados";
+ document.getElementById("progressFill").style.width =
+ (completed.length/modules.length*100) + "%";
+}
+
+function renderModules() {
+ const container = document.getElementById("moduleCards");
+ container.innerHTML = "";
+ modules.forEach((m,i) => {
+  const done = completed.includes(i);
+  const card = document.createElement("article");
+  card.className = "card";
+  card.innerHTML = `
+   <div class="icon">${m.icon}</div>
+   <div class="eyebrow">MÓDULO ${i+1}</div>
+   <h3>${m.title}</h3>
+   <p>${m.desc}</p>
+   <p>${done ? "✓ Clase completada" : "Clase para principiantes"}</p>
+   <button onclick="openModule(${i})">${done ? "Repasar módulo" : "Ver módulo →"}</button>`;
+  container.appendChild(card);
+ });
+ updateProgress();
+}
+
+function hideScreens() {
+ ["homeScreen","moduleScreen","lessonScreen"].forEach(id =>
+  document.getElementById(id).classList.add("hidden"));
+}
+
+function home() {
+ hideScreens();
+ document.getElementById("homeScreen").classList.remove("hidden");
+ window.scrollTo(0,0);
+}
+
+function goCourses() {
+ home();
+ setTimeout(() => document.getElementById("cursos").scrollIntoView(),20);
+}
+
+function openModule(i) {
+ current = i;
+ hideScreens();
+ document.getElementById("moduleScreen").classList.remove("hidden");
+ document.getElementById("moduleCrumb").textContent = modules[i].title;
+ document.getElementById("moduleNumber").textContent = "MÓDULO " + (i+1) + " DE " + modules.length;
+ document.getElementById("moduleTitle").textContent = modules[i].title;
+ document.getElementById("moduleDescription").textContent = modules[i].desc;
+ document.getElementById("moduleGoals").innerHTML =
+  modules[i].goals.map(g=>"<li>"+g+"</li>").join("");
+ window.scrollTo(0,0);
+}
+
+function startLesson() {
+ const m = modules[current];
+ answeredCorrectly = false;
+ hideScreens();
+ document.getElementById("lessonScreen").classList.remove("hidden");
+ document.getElementById("lessonCrumb").textContent = m.title;
+ document.getElementById("lessonNumber").textContent = "CLASE " + (current+1) + " DE " + modules.length;
+ document.getElementById("lessonTitle").textContent = m.title;
+ document.getElementById("lessonBody").innerHTML = m.body;
+ document.getElementById("virtualActivity").classList.toggle("hidden",!m.activity);
+ document.getElementById("partInfo").textContent = "Elegí un componente para ver su explicación.";
+ document.querySelectorAll(".part").forEach(b=>b.classList.remove("selected"));
+ document.getElementById("quizQuestion").textContent = m.q;
+ document.getElementById("quizAnswers").innerHTML = m.answers.map((a,i)=>
+  `<label class="answer"><input type="radio" name="answer" value="${i}">${a}</label>`
+ ).join("");
+ document.getElementById("feedback").textContent = "";
+ document.getElementById("finishButton").textContent =
+  completed.includes(current) ? "Clase completada ✓" : "Terminé esta clase ✓";
+ document.getElementById("nextButton").textContent =
+  current === modules.length-1 ? "Finalizar curso →" : "Siguiente módulo →";
+ window.scrollTo(0,0);
+}
+
+function showPart(key,button) {
+ document.querySelectorAll(".part").forEach(b=>b.classList.remove("selected"));
+ button.classList.add("selected");
+ document.getElementById("partInfo").textContent = partDescriptions[key];
+}
+
+function checkAnswer() {
+ const chosen = document.querySelector('input[name="answer"]:checked');
+ const feedback = document.getElementById("feedback");
+ if (!chosen) {
+  feedback.style.color = "#ffbd59";
+  feedback.textContent = "Elegí una respuesta antes de comprobar.";
+  return;
+ }
+ if (Number(chosen.value) === modules[current].correct) {
+  answeredCorrectly = true;
+  feedback.style.color = "var(--green)";
+  feedback.textContent = "¡Correcto! Entendiste esta parte. Podés marcar la clase como terminada.";
+ } else {
+  feedback.style.color = "#ff8b8b";
+  feedback.textContent = "Todavía no. Volvé a leer la explicación y probá otra respuesta.";
+ }
+}
+
+function finishLesson() {
+ if (!answeredCorrectly && !completed.includes(current)) {
+  document.getElementById("feedback").style.color = "#ffbd59";
+  document.getElementById("feedback").textContent =
+   "Primero respondé correctamente la pregunta para completar esta clase.";
+  return;
+ }
+ if (!completed.includes(current)) completed.push(current);
+ saveProgress();
+ document.getElementById("finishButton").textContent = "Clase completada ✓";
+ document.getElementById("feedback").style.color = "var(--green)";
+ document.getElementById("feedback").textContent = "¡Progreso guardado! Podés seguir con la próxima clase.";
+}
+
+function backToModule() {
+ openModule(current);
+}
+
+function nextModule() {
+ if (!completed.includes(current)) {
+  document.getElementById("feedback").style.color = "#ffbd59";
+  document.getElementById("feedback").textContent =
+   "Completá la clase y respondé correctamente antes de avanzar.";
+  return;
+ }
+ if (current < modules.length-1) {
+  openModule(current+1);
+ } else {
+  hideScreens();
+  document.getElementById("homeScreen").classList.remove("hidden");
+  window.scrollTo(0,0);
+  alert("¡Felicitaciones! Completaste los 8 módulos de PC MASTER.");
+  goCourses();
+ }
+}
+
+renderModules();
+</script>
+</body>
+</html>
